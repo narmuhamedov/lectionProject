@@ -5,32 +5,49 @@
     <title>PersonList</title>
 </head>
 <body>
-<div style="background-color: wheat">
-    <ul>
-        {% for i in object_list %}
-        <li>
-            <h1>Имя:{{i.name}}</h1>
-            <p>Возраст:{{i.age}}</p>
-            <a href="/person_list/{{i.id}}/">Детально</a>
-        </li>
-        {% endfor %}
-    </ul>
-</div>
 <div style="background-color: darksalmon">
     <center>
         <h1>CRUD</h1>
         <button style="width: 100px; height: 50px; background-color: lawngreen">
             <a href="/create_person/">Добавить</a>
         </button>
-
-        <button style="width: 100px; height: 50px;background-color: orangered">
-            <a href="">Удалить</a>
-        </button>
-
-        <button style="width: 100px; height: 50px;background-color: yellow">
-            <a href="">Изменить</a>
-        </button>
     </center>
 </div>
+
+<div class="block1" style="background-color: darkgray;">
+    <ul>
+        {% for i in object_list %}
+        <li>
+            <h1>Имя:{{i.name}}</h1>
+            <p>Возраст:{{i.age}}</p>
+            <a href="/person_list/{{i.id}}/" class="a1">Детально</a>
+            <a href="/person_list/{{i.id}}/delete/" class="a2">Удалить</a>
+            <a href="/person_list/{{i.id}}/update/" class="a3">Изменить</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+<style>
+    .block1 a {
+        text-decoration: none;
+        font-size: 30px;
+    }
+
+    .a1 {
+        color: green;
+        border:4px solid green;
+    }
+
+    .a2 {
+        color: red;
+        border: 4px solid red;
+    }
+
+    .a3 {
+        color: #65550c;
+        border:4px solid #65550c ;
+    }
+
+</style>
 </body>
 </html>
