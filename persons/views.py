@@ -62,8 +62,8 @@ class PhoneDeleteView(generic.DeleteView):
 
     def get_object(self, **kwargs):
         person_id = self.kwargs.get("id")
+        return get_object_or_404(models.Person, id=person_id)
 
-#         return get_object_or_404(models.Person, id=person_id)
 # def person_delete_view(request, id):
 #     person_id = get_object_or_404(models.Person, id=id)
 #     person_id.delete()
@@ -99,3 +99,18 @@ class PersonUpdateView(generic.UpdateView):
 #         'object': person_id
 #     }
 #     return render(request, 'person_update.html', context)
+
+class SearchView(generic.ListView):
+    template_name = "person_list.html"
+    context_object_name = "person"
+    paginate_by = 5
+
+    def get_queryset(self):
+        return models.Person.objects.filter(
+            name__icontains=self.request.GET.get("q")
+        )
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["q"] = self.request.GET.get("q")
+        return context
