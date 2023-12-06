@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'persons',
     'custom_users',
+    'parser_app',
 ]
 
 MIDDLEWARE = [
